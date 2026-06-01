@@ -1,9 +1,17 @@
-import 'package:e_learning_v2/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'core/theme/cubit/theme_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_learning_v2/generated/l10n.dart';
+import 'package:e_learning_v2/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:e_learning_v2/injection/injection_container.dart';
+import 'package:e_learning_v2/core/services/custom_bloc_observer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = CustomBlocObserver();
+  await setupGetIt();
   runApp(const MyApp());
 }
 
@@ -13,23 +21,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (context, child) {
-        return MaterialApp(
-          title: '',
-          locale: const Locale('en'), // Set default locale to English
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          home: MyHomePage(),
-          debugShowCheckedModeBanner: false,
-        );
-      },
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => getIt<ThemeCubit>())],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        builder: (context, child) {
+          return BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return MaterialApp(
+                title: '',
+                theme: AppTheme.light,
+                darkTheme: AppTheme.dark,
+                themeMode: state.themeMode,
+                locale: const Locale('en'), // Set default locale to English
+                localizationsDelegates: [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                home: MyHomePage(),
+                debugShowCheckedModeBanner: false,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
@@ -53,7 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(S.of(context).appTitle)),
+      appBar: AppBar(
+        title: Text(S.of(context).appTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
