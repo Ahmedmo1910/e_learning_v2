@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'core/theme/cubit/theme_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_learning_v2/generated/l10n.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:e_learning_v2/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:e_learning_v2/injection/injection_container.dart';
+import 'package:e_learning_v2/core/services/supabase_service.dart';
 import 'package:e_learning_v2/core/services/custom_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
+  await dotenv.load(fileName: '.env');
+  await SupabaseService.initialize();
   await setupGetIt();
   runApp(const MyApp());
 }
