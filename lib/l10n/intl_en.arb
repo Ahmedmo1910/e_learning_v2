@@ -1,3 +1,11 @@
 {
-    "appTitle": "E-Learning App"
+  "appTitle": "E-Learning App",
+  "invalidCredentials": "Invalid email or password.",
+  "emailInUse": "This email is already registered.",
+  "emailNotConfirmed": "Please confirm your email before logging in.",
+  "invalidOtp": "The code is invalid or has expired.",
+  "rateLimitExceeded": "Too many attempts. Please try again later.",
+  "networkError": "Network error. Check your connection.",
+  "serverError": "A server error occurred. Please try again.",
+  "unexpectedError": "An unexpected error occurred."
 }

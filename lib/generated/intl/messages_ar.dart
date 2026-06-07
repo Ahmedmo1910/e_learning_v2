@@ -23,5 +23,29 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "appTitle": MessageLookupByLibrary.simpleMessage("تطبيق التعلم الإلكتروني"),
+    "emailInUse": MessageLookupByLibrary.simpleMessage(
+      "هذا البريد الإلكتروني مسجل بالفعل",
+    ),
+    "emailNotConfirmed": MessageLookupByLibrary.simpleMessage(
+      "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول",
+    ),
+    "invalidCredentials": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    ),
+    "invalidOtp": MessageLookupByLibrary.simpleMessage(
+      "الرمز غير صالح أو انتهت صلاحيته",
+    ),
+    "networkError": MessageLookupByLibrary.simpleMessage(
+      "خطأ في الشبكة. تحقق من اتصالك.",
+    ),
+    "rateLimitExceeded": MessageLookupByLibrary.simpleMessage(
+      "محاولات كثيرة جداً. يرجى المحاولة لاحقاً",
+    ),
+    "serverError": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ في الخادم. يرجى المحاولة مجدداً.",
+    ),
+    "unexpectedError": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ غير متوقع.",
+    ),
   };
 }

@@ -23,5 +23,29 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "appTitle": MessageLookupByLibrary.simpleMessage("E-Learning App"),
+    "emailInUse": MessageLookupByLibrary.simpleMessage(
+      "This email is already registered.",
+    ),
+    "emailNotConfirmed": MessageLookupByLibrary.simpleMessage(
+      "Please confirm your email before logging in.",
+    ),
+    "invalidCredentials": MessageLookupByLibrary.simpleMessage(
+      "Invalid email or password.",
+    ),
+    "invalidOtp": MessageLookupByLibrary.simpleMessage(
+      "The code is invalid or has expired.",
+    ),
+    "networkError": MessageLookupByLibrary.simpleMessage(
+      "Network error. Check your connection.",
+    ),
+    "rateLimitExceeded": MessageLookupByLibrary.simpleMessage(
+      "Too many attempts. Please try again later.",
+    ),
+    "serverError": MessageLookupByLibrary.simpleMessage(
+      "A server error occurred. Please try again.",
+    ),
+    "unexpectedError": MessageLookupByLibrary.simpleMessage(
+      "An unexpected error occurred.",
+    ),
   };
 }

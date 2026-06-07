@@ -1,12 +1,15 @@
 import '../models/user_model.dart';
 import 'auth_remote_datasource.dart';
-import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failures.dart';
+import 'package:e_learning_v2/generated/l10n.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/services/supabase_service.dart';
+import 'package:e_learning_v2/core/errors/exceptions.dart';
 
 class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
   final SupabaseService _supabaseService;
   AuthRemoteDatasourceImp(this._supabaseService);
+
   GoTrueClient get _auth => _supabaseService.auth;
   UserModel _mapUser(User user) => UserModel.fromAuthUser(user);
 
@@ -15,15 +18,19 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    final response = await _auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
-    final user = response.user;
-    if (user == null) {
-      throw CustomException(message: 'Failed to sign in');
+    try {
+      final response = await _auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      final user = response.user;
+      if (user == null) {
+        throw UnexpectedFailure(message: S.current.unexpectedError);
+      }
+      return _mapUser(user);
+    } catch (e) {
+      throw CustomException.map(e);
     }
-    return _mapUser(user);
   }
 
   @override
@@ -33,33 +40,48 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
     required bool role,
     required String password,
   }) async {
-    final response = await _auth.signUp(
-      email: email,
-      password: password,
-      data: {'full_name': name, 'role': role},
-    );
-    final user = response.user;
-    if (user == null) {
-      throw CustomException(message: 'Failed to sign up');
+    try {
+      final response = await _auth.signUp(
+        email: email,
+        password: password,
+        data: {'full_name': name, 'role': role},
+      );
+      final user = response.user;
+      if (user == null) {
+        throw UnexpectedFailure(message: S.current.unexpectedError);
+      }
+      if (user.identities?.isEmpty ?? false) {
+        throw EmailAlreadyInUseFailure(message: S.current.emailInUse);
+      }
+      return _mapUser(user);
+    } catch (e) {
+      // avoid double-mapping if already a Failure
+      if (e is Failure) rethrow;
+      throw CustomException.map(e);
     }
-    if (user.identities?.isEmpty ?? false) {
-      throw CustomException(message: 'Email already exists');
-    }
-    return _mapUser(user);
   }
 
   @override
   Future<void> signOut() async {
-    await _auth.signOut();
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      throw CustomException.map(e);
+    }
   }
 
   @override
   UserModel getCurrentUser() {
-    final user = _auth.currentUser;
-    if (user == null) {
-      throw CustomException(message: 'No user found');
+    try {
+      final user = _auth.currentUser;
+      if (user == null) {
+        throw UnexpectedFailure(message: S.current.unexpectedError);
+      }
+      return _mapUser(user);
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw CustomException.map(e);
     }
-    return _mapUser(user);
   }
 
   @override
@@ -67,31 +89,41 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
     required String email,
     required String otp,
   }) async {
-    final response = await _auth.verifyOTP(
-      email: email,
-      token: otp,
-      type: OtpType.signup,
-    );
-    final user = response.user;
-    if (user == null) {
-      throw CustomException(message: 'Invalid OTP');
+    try {
+      final response = await _auth.verifyOTP(
+        email: email,
+        token: otp,
+        type: OtpType.signup,
+      );
+      final user = response.user;
+      if (user == null) throw InvalidOtpFailure(message: S.current.invalidOtp);
+      return _mapUser(user);
+    } catch (e) {
+      if (e is Failure) rethrow;
+      throw CustomException.map(e);
     }
-    return _mapUser(user);
   }
 
   @override
   Future<void> reSendOTP({required String email}) async {
-    await _auth.resend(email: email, type: OtpType.signup);
+    try {
+      await _auth.resend(email: email, type: OtpType.signup);
+    } catch (e) {
+      throw CustomException.map(e);
+    }
   }
 
   @override
   Stream<bool> authStateChanges() {
     return _auth.onAuthStateChange.map((event) => event.session != null);
   }
-  
+
   @override
-  Future<void> resetPassword({required String email}) {
-    // TODO: implement resetPassword
-    throw UnimplementedError();
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await _auth.resetPasswordForEmail(email);
+    } catch (e) {
+      throw CustomException.map(e);
+    }
   }
 }
