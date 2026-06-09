@@ -1,0 +1,63 @@
+import 'auth_state.dart';
+import '../../repository/auth_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_learning_v2/core/bloc/base_state.dart';
+
+class AuthCubit extends Cubit<AuthState> {
+  final AuthRepo authRepo;
+  AuthCubit(this.authRepo) : super(const AuthState());
+
+  Future<void> signIn({required String email, required String password}) async {
+    emit(state.copyWith(status: Status.loading));
+    final result = await authRepo.signIn(email: email, password: password);
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          message: failure.message,
+          failure: failure,
+        ),
+      ),
+      (user) => emit(
+        state.copyWith(
+          status: Status.success,
+          user: user,
+          isAuthenticated: true,
+          isEmailVerified: user.isEmailVerified,
+        ),
+      ),
+    );
+  }
+
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String name,
+    required String role,
+  }) async {
+    emit(state.copyWith(status: Status.loading));
+    final result = await authRepo.signUp(
+      email: email,
+      password: password,
+      name: name,
+      role: role,
+    );
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          message: failure.message,
+          failure: failure,
+        ),
+      ),
+      (user) => emit(
+        state.copyWith(
+          status: Status.success,
+          user: user,
+          isAuthenticated: true,
+          isEmailVerified: false,
+        ),
+      ),
+    );
+  }
+}

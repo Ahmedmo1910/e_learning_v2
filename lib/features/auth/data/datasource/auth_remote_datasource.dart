@@ -5,7 +5,7 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> signUp({
     required String name,
     required String email,
-    required bool role,
+    required String role,
     required String password,
   });
   Future<void> signOut();
