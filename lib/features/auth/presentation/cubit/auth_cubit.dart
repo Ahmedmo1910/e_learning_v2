@@ -60,4 +60,61 @@ class AuthCubit extends Cubit<AuthState> {
       ),
     );
   }
+
+  Future<void> sendOTP({required String email, required String token}) async {
+    emit(state.copyWith(status: Status.loading));
+    final result = await authRepo.sendOTP(email: email, otp: token);
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          message: failure.message,
+          failure: failure,
+        ),
+      ),
+      (user) => emit(
+        state.copyWith(
+          status: Status.success,
+          user: user,
+          isEmailVerified: true,
+          isAuthenticated: true,
+        ),
+      ),
+    );
+  }
+
+  Future<void> reSendOTP({required String email}) async {
+    emit(state.copyWith(status: Status.loading));
+    final result = await authRepo.reSendOTP(email: email);
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          message: failure.message,
+          failure: failure,
+        ),
+      ),
+      (_) => emit(
+        state.copyWith(
+          status: Status.success,
+          message: 'OTP resent successfully',
+        ),
+      ),
+    );
+  }
+
+  Future<void> signOut() async {
+    emit(state.copyWith(status: Status.loading));
+    final result = await authRepo.signOut();
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          message: failure.message,
+          failure: failure,
+        ),
+      ),
+      (_) => emit(const AuthState()),
+    );
+  }
 }

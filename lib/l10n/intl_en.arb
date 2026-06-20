@@ -7,5 +7,8 @@
   "rateLimitExceeded": "Too many attempts. Please try again later.",
   "networkError": "Network error. Check your connection.",
   "serverError": "A server error occurred. Please try again.",
-  "unexpectedError": "An unexpected error occurred."
+  "unexpectedError": "An unexpected error occurred.",
+  "passwordStrengthWeak": "The password is weak.",
+  "passwordStrengthMedium": "The password is medium.",
+  "passwordStrengthStrong": "The password is strong."
 }

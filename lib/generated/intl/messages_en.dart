@@ -38,6 +38,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Network error. Check your connection.",
     ),
+    "passwordStrengthMedium": MessageLookupByLibrary.simpleMessage(
+      "The password is medium.",
+    ),
+    "passwordStrengthStrong": MessageLookupByLibrary.simpleMessage(
+      "The password is strong.",
+    ),
+    "passwordStrengthWeak": MessageLookupByLibrary.simpleMessage(
+      "The password is weak.",
+    ),
     "rateLimitExceeded": MessageLookupByLibrary.simpleMessage(
       "Too many attempts. Please try again later.",
     ),

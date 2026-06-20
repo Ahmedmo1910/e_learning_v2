@@ -7,5 +7,9 @@
   "rateLimitExceeded": "محاولات كثيرة جداً. يرجى المحاولة لاحقاً",
   "networkError": "خطأ في الشبكة. تحقق من اتصالك.",
   "serverError": "حدث خطأ في الخادم. يرجى المحاولة مجدداً.",
-  "unexpectedError": "حدث خطأ غير متوقع."
+  "unexpectedError": "حدث خطأ غير متوقع.", 
+  "passwordStrengthWeak": "كلمه المرور ضعيفة",
+  "passwordStrengthMedium": "كلمه المرور متوسطة",
+  "passwordStrengthStrong": "كلمه المرور قوية"
+
 }

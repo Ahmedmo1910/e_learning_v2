@@ -138,6 +138,36 @@ class S {
       args: [],
     );
   }
+
+  /// `The password is weak.`
+  String get passwordStrengthWeak {
+    return Intl.message(
+      'The password is weak.',
+      name: 'passwordStrengthWeak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is medium.`
+  String get passwordStrengthMedium {
+    return Intl.message(
+      'The password is medium.',
+      name: 'passwordStrengthMedium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is strong.`
+  String get passwordStrengthStrong {
+    return Intl.message(
+      'The password is strong.',
+      name: 'passwordStrengthStrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
