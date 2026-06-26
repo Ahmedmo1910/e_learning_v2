@@ -2,26 +2,26 @@ import 'auth_repo.dart';
 import 'package:dartz/dartz.dart';
 import '../domain/entities/user_entity.dart';
 import '../../../core/errors/exceptions.dart';
+import '../data/datasource/auth_remote_datasource.dart';
 import 'package:e_learning_v2/core/errors/failures.dart';
-import '../data/datasource/auth_remote_datasource_imp.dart';
 
 class AuthRepoImp implements AuthRepo {
-  AuthRemoteDatasourceImp authRemoteDataSourceImp;
-  AuthRepoImp(this.authRemoteDataSourceImp);
+  AuthRemoteDataSource authRemoteDataSource;
+  AuthRepoImp(this.authRemoteDataSource);
   @override
   Stream<bool> authStateChanges() {
-    return authRemoteDataSourceImp.authStateChanges();
+    return authRemoteDataSource.authStateChanges();
   }
 
   @override
   UserEntity? getCurrentUser() {
-    return authRemoteDataSourceImp.getCurrentUser().toEntity();
+    return authRemoteDataSource.getCurrentUser().toEntity();
   }
 
   @override
   Future<Either<Failure, void>> reSendOTP({required String email}) async {
     try {
-      return Right(authRemoteDataSourceImp.reSendOTP(email: email));
+      return Right(authRemoteDataSource.reSendOTP(email: email));
     } catch (e) {
       return Left(CustomException.map(e));
     }
@@ -33,10 +33,7 @@ class AuthRepoImp implements AuthRepo {
     required String otp,
   }) async {
     try {
-      final user = await authRemoteDataSourceImp.sendOTP(
-        email: email,
-        otp: otp,
-      );
+      final user = await authRemoteDataSource.sendOTP(email: email, otp: otp);
       return Right(user.toEntity());
     } catch (e) {
       return Left(CustomException.map(e));
@@ -49,7 +46,7 @@ class AuthRepoImp implements AuthRepo {
     required String password,
   }) async {
     try {
-      final user = await authRemoteDataSourceImp.signIn(
+      final user = await authRemoteDataSource.signIn(
         email: email,
         password: password,
       );
@@ -62,7 +59,7 @@ class AuthRepoImp implements AuthRepo {
   @override
   Future<Either<Failure, void>> signOut() async {
     try {
-      return Right(authRemoteDataSourceImp.signOut());
+      return Right(authRemoteDataSource.signOut());
     } catch (e) {
       return Left(CustomException.map(e));
     }
@@ -76,7 +73,7 @@ class AuthRepoImp implements AuthRepo {
     required String role,
   }) async {
     try {
-      final user = await authRemoteDataSourceImp.signUp(
+      final user = await authRemoteDataSource.signUp(
         email: email,
         password: password,
         name: name,

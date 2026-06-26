@@ -5,10 +5,13 @@ import 'package:e_learning_v2/generated/l10n.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:e_learning_v2/core/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:e_learning_v2/core/bloc/cubit_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:e_learning_v2/injection/injection_container.dart';
 import 'package:e_learning_v2/core/services/supabase_service.dart';
 import 'package:e_learning_v2/core/services/custom_bloc_observer.dart';
+
+import 'features/splash/presentation/view/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => getIt<ThemeCubit>())],
+    return CubitProvider(
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         builder: (context, child) {
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
                 theme: AppTheme.light,
                 darkTheme: AppTheme.dark,
                 themeMode: state.themeMode,
-                locale: const Locale('en'), // Set default locale to English
+                locale: const Locale('en'),
                 localizationsDelegates: [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
@@ -45,9 +47,7 @@ class MyApp extends StatelessWidget {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const Scaffold(
-                  body: Center(child: CircularProgressIndicator()),
-                ),
+                home: const SplashPage(),
                 debugShowCheckedModeBanner: false,
               );
             },

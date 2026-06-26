@@ -117,4 +117,20 @@ class AuthCubit extends Cubit<AuthState> {
       (_) => emit(const AuthState()),
     );
   }
+
+  Future<void> checkAuthStatus() async {
+    final user = authRepo.getCurrentUser();
+    if (user != null) {
+      emit(
+        state.copyWith(
+          status: Status.success,
+          user: user,
+          isAuthenticated: true,
+          isEmailVerified: user.isEmailVerified,
+        ),
+      );
+    } else {
+      emit(const AuthState());
+    }
+  }
 }
