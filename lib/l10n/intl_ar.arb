@@ -10,6 +10,89 @@
   "unexpectedError": "حدث خطأ غير متوقع.", 
   "passwordStrengthWeak": "كلمه المرور ضعيفة",
   "passwordStrengthMedium": "كلمه المرور متوسطة",
-  "passwordStrengthStrong": "كلمه المرور قوية"
+  "passwordStrengthStrong": "كلمه المرور قوية",
 
+  "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة لاحقاً",
+  "signOutFailed": "فشل تسجيل الخروج",
+  "resetPasswordFailed": "فشل إرسال رابط استعادة كلمة المرور",
+
+  "loginTitle": "مرحباً بعودتك",
+  "loginSubtitle": "سجل دخولك لمتابعة رحلة تعلمك",
+
+  "emailLabel": "البريد الإلكتروني",
+  "emailHint": "أدخل بريدك الإلكتروني",
+  "emailRequired": "البريد الإلكتروني مطلوب",
+  "emailInvalid": "أدخل بريد إلكتروني صحيح",
+
+  "passwordLabel": "كلمة المرور",
+  "passwordHint": "أدخل كلمة المرور",
+  "passwordRequired": "كلمة المرور مطلوبة",
+  "passwordLength": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "loginButton": "تسجيل الدخول",
+
+  "noAccount": "ليس لديك حساب؟",
+  "signupLink": "إنشاء حساب",
+
+  "signupTitle": "إنشاء حساب جديد",
+  "signupSubtitle": "ابدأ رحلتك معنا اليوم",
+
+  "nameLabel": "الاسم الكامل",
+  "nameHint": "أدخل اسمك الكامل",
+  "nameRequired": "الاسم مطلوب",
+
+  "confirmPasswordLabel": "تأكيد كلمة المرور",
+  "confirmPasswordHint": "كرر كلمة المرور",
+  "passwordMismatch": "كلمتا المرور غير متطابقتين",
+
+  "registerButton": "إنشاء الحساب",
+
+  "alreadyHaveAccount": "لديك حساب بالفعل؟",
+
+  "roleTitle": "اختر نوع الحساب",
+  "roleStudent": "طالب",
+  "roleStudentDesc": "تعلم مهارات جديدة والتحق بالدورات",
+
+  "roleTutor": "معلم",
+  "roleTutorDesc": "شارك خبرتك ودرّس الطلاب",
+
+  "roleRequiredError": "يرجى تحديد ما إذا كنت طالباً أم معلماً",
+
+  "otpTitle": "تحقق من البريد الإلكتروني",
+  "otpSubtitle": "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى {email}",
+
+  "codeLabel": "رمز التحقق",
+  "codeHint": "أدخل الرمز المكون من 6 أرقام",
+
+  "verifyButton": "تحقق",
+  "resendButton": "إعادة إرسال الرمز",
+  "resendIn": "إعادة الإرسال خلال {seconds} ثانية",
+
+  "invalidCode": "رمز التحقق غير صحيح",
+  "emailVerified": "تم التحقق من البريد الإلكتروني بنجاح",
+
+  "studentTitle": "لوحة تحكم الطالب",
+  "studentWelcome": "مرحباً بعودتك، {name}!",
+
+  "myCourses": "دوراتي التعليمية",
+  "myCoursesDesc": "عرض والوصول إلى الدورات المسجل بها",
+
+  "progress": "تقدمي الدراسي",
+  "progressDesc": "تتبع إنجازاتك التعليمية وما حققته",
+
+  "schedule": "جدول الحصص",
+  "scheduleDesc": "تحقق من الجلسات المباشرة القادمة",
+
+  "instructorTitle": "لوحة تحكم المعلم",
+  "instructorWelcome": "مرحباً بعودتك، كوتش {name}!",
+
+  "createCourse": "إنشاء دورة جديدة",
+  "createCourseDesc": "صمم وانشر دورة تعليمية جديدة",
+
+  "myStudents": "طلابي",
+  "myStudentsDesc": "إدارة ومساعدة الطلاب المسجلين لديك",
+
+  "analytics": "تحليلات الأداء",
+  "analyticsDesc": "تتبع تقييماتك، التعليقات، والمبيعات"
 }

@@ -23,6 +23,7 @@ class AppSizes {
   static double get iconM => 24.sp;
   static double get iconL => 32.sp;
   static double get iconXL => 48.sp;
+  static double get iconXXL => 64.sp;
 
   //! Button Heights
   static double get buttonHeightS => 32.h;

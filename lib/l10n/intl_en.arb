@@ -10,5 +10,89 @@
   "unexpectedError": "An unexpected error occurred.",
   "passwordStrengthWeak": "The password is weak.",
   "passwordStrengthMedium": "The password is medium.",
-  "passwordStrengthStrong": "The password is strong."
+  "passwordStrengthStrong": "The password is strong.",
+
+  "somethingWentWrong": "Something went wrong, please try again later",
+  "signOutFailed": "Failed to sign out",
+  "resetPasswordFailed": "Failed to send reset password link",
+
+  "loginTitle": "Welcome Back",
+  "loginSubtitle": "Sign in to continue your learning journey",
+
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "emailRequired": "Email is required",
+  "emailInvalid": "Enter a valid email",
+
+  "passwordLabel": "Password",
+  "passwordHint": "Enter your password",
+  "passwordRequired": "Password is required",
+  "passwordLength": "Password must be at least 6 characters",
+
+  "forgotPassword": "Forgot Password?",
+  "loginButton": "Login",
+
+  "noAccount": "Don't have an account?",
+  "signupLink": "Sign Up",
+
+  "signupTitle": "Create Account",
+  "signupSubtitle": "Start your journey with us today",
+
+  "nameLabel": "Full Name",
+  "nameHint": "Enter your full name",
+  "nameRequired": "Name is required",
+
+  "confirmPasswordLabel": "Confirm Password",
+  "confirmPasswordHint": "Repeat your password",
+  "passwordMismatch": "Passwords do not match",
+
+  "registerButton": "Register",
+
+  "alreadyHaveAccount": "Already have an account?",
+
+  "roleTitle": "Choose Account Type",
+  "roleStudent": "Student",
+  "roleStudentDesc": "Learn new skills and access courses",
+
+  "roleTutor": "Teacher",
+  "roleTutorDesc": "Share your expertise and teach students",
+
+  "roleRequiredError": "Please select whether you are a Student or a Teacher",
+
+  "otpTitle": "Email Verification",
+  "otpSubtitle": "We've sent a 6-digit code to {email}",
+
+  "codeLabel": "Verification Code",
+  "codeHint": "Enter 6-digit code",
+
+  "verifyButton": "Verify",
+  "resendButton": "Resend Code",
+  "resendIn": "Resend in {seconds}s",
+
+  "invalidCode": "Invalid verification code",
+  "emailVerified": "Email verified successfully",
+
+  "studentTitle": "Student Dashboard",
+  "studentWelcome": "Welcome back, {name}!",
+
+  "myCourses": "My Courses",
+  "myCoursesDesc": "View and access your enrolled courses",
+
+  "progress": "My Progress",
+  "progressDesc": "Track your learning achievements",
+
+  "schedule": "Class Schedule",
+  "scheduleDesc": "Check your upcoming live sessions",
+
+  "instructorTitle": "Instructor Dashboard",
+  "instructorWelcome": "Welcome back, Coach {name}!",
+
+  "createCourse": "Create Course",
+  "createCourseDesc": "Design and publish a new course",
+
+  "myStudents": "My Students",
+  "myStudentsDesc": "Manage and assist your enrolled students",
+
+  "analytics": "Performance Analytics",
+  "analyticsDesc": "Track your ratings, feedback, and sales"
 }

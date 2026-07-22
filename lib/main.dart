@@ -11,6 +11,8 @@ import 'package:e_learning_v2/injection/injection_container.dart';
 import 'package:e_learning_v2/core/services/supabase_service.dart';
 import 'package:e_learning_v2/core/services/custom_bloc_observer.dart';
 
+import 'features/auth/presentation/views/login_page.dart';
+import 'features/auth/presentation/views/signup_page.dart';
 import 'features/splash/presentation/view/splash.dart';
 
 void main() async {
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const SplashPage(),
+                home: SignupPage(),
                 debugShowCheckedModeBanner: false,
               );
             },

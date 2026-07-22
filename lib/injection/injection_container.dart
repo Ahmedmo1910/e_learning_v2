@@ -16,6 +16,8 @@ Future<void> setupGetIt() async {
 
   getIt.registerFactory(() => ThemeCubit(getIt()));
 
+ // getIt.registerSingleton(()=> AppRouter());
+
   getIt.registerLazySingleton(() => SupabaseService());
 
   getIt.registerLazySingleton<AuthRemoteDataSource>(
